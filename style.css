@@ -5,3 +5,7 @@ h2 {
     padding: 16px;
     display: inline;
 }
+
+.center {
+    text-align: center;
+}
