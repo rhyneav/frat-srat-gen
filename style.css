@@ -1,11 +1,32 @@
+body {
+    margin: 0px;
+}
+
+.greek {
+    background-color: purple;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 h2 {
     font-family: 'GFS Neohellenic', sans-serif;
     font-weight: 700;
     font-size: 96px;
     padding: 16px;
     display: inline;
+    color: white;
+}
+
+.description p {
+    color: white;
+    font-family: Sans-serif;
+    opacity: .6;
 }
 
 .center {
     text-align: center;
+}
+
+.hidden {
+    visibility: hidden;
 }
