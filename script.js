@@ -6,7 +6,14 @@ function randomNumberGenerator(min, max) {
     return randomNumber;
 }
 
-var letters;
+function randomColorGenerator() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5C1QF_57hrVGYpdmf9c/od6/public/basic?alt=json", function(data) {
     function goGreek() {
@@ -31,28 +38,23 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
     goGreek();
     
     $.getJSON("https://spreadsheets.google.com/feeds/list/1FCgjlBm1jL_Fvn0rlAgbwaVl0jv0aB67OEszwUVSNAo/od6/public/basic?alt=json", function(phrases) {
-        console.log(phrases);
         function slogan() {
             // Get two adjectives
             var j = randomNumberGenerator(0, 51);
             var adj1 = phrases.feed.entry[j]["title"]["$t"];
-            console.log(adj1);
-            
+
             var k = randomNumberGenerator(0, 51);
             var adj2 = phrases.feed.entry[k]["title"]["$t"];
-            console.log(adj2);
-            
+
             // Get two nouns
             var l = randomNumberGenerator(0, 51);
             var noun1 = phrases.feed.entry[l]["content"]["$t"];
             noun1 = noun1.slice(6, noun1.length);
-            console.log(noun1);
-            
+
             var m = randomNumberGenerator(0, 51);
             var noun2 = phrases.feed.entry[m]["content"]["$t"];
             noun2 = noun2.slice(6, noun2.length);
-            console.log(noun2);
-            
+
             // Make into a sentence
             $(".slogan").append("<h3>" + adj1 + " " + noun1 + ". " + adj2 + " " + noun2 + ".</h3>");
             
@@ -68,6 +70,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
             $(".description-text").text("");
             goGreek();
             slogan();
+            $(".container").css("background-color", randomColorGenerator());
         });
     });
 
