@@ -15,6 +15,12 @@ function randomColorGenerator() {
     return color;
 }
 
+function getStarted() {
+    $("#close-info").removeClass("disabled");
+    $("#close-info").prop("disabled", false);
+    $("#close-info").text("Start");
+}
+
 $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5C1QF_57hrVGYpdmf9c/od6/public/basic?alt=json", function(data) {
     function goGreek() {
         for (var i = 0; i < 3; i++) {
@@ -61,25 +67,28 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
         }
         
         slogan();
-    
-        // Listeners
         
-        // make to new function to be called by close-info button too
-        $("#reRoll").click(function() {
+        function reRoll() {
             $("h2").remove();
             $("h3").remove();
             $(".description-text").text("");
             goGreek();
             slogan();
             $(".container").css("background-color", randomColorGenerator());
-        });
+        }
         
-        // listener to make this button not available until everything has been loaded
-        $("#close-info").removeClass("disabled");
-        $("#close-info").prop("disabled", false);
+        // Make start button not available until everything has been loaded
+        getStarted();
         
+        // Listeners
+        
+        // Make to new function to be called by close-info button too
+        $("#reRoll").click(reRoll);
+        
+        // Close out overlay
         $("#close-info").click(function() {
             $(".overlay").css("height", "0%"); 
+            reRoll();
         });
     });
 
