@@ -6,6 +6,19 @@ body {
     height: 100vh;
 }
 
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(255,255,255); /* Black fallback color */
+    background-color: rgba(255,255,255, 0.97); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
 
 h2 {
     font-family: 'GFS Neohellenic', sans-serif;
@@ -57,9 +70,15 @@ button {
     overflow: hidden;
 }
 
-#reRoll{
+#reRoll {
     color: #FFF;
     background-color: #f55a4e;
+    margin-right: 12px;
+}
+
+#close-info {
+    color: #FFF;
+    background-color: #41EB7E;
     margin-right: 12px;
 }
 
@@ -67,6 +86,11 @@ button {
     color: #FFF;
     background-color: #2196F3;
     margin-left: 12px;
+}
+
+.disabled {
+    cursor: not-allowed;
+    background-color: gray !important;
 }
 
 .description p {

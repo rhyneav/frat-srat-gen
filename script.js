@@ -64,6 +64,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
     
         // Listeners
         
+        // make to new function to be called by close-info button too
         $("#reRoll").click(function() {
             $("h2").remove();
             $("h3").remove();
@@ -71,6 +72,14 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
             goGreek();
             slogan();
             $(".container").css("background-color", randomColorGenerator());
+        });
+        
+        // listener to make this button not available until everything has been loaded
+        $("#close-info").removeClass("disabled");
+        $("#close-info").prop("disabled", false);
+        
+        $("#close-info").click(function() {
+            $(".overlay").css("height", "0%"); 
         });
     });
 
