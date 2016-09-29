@@ -70,12 +70,15 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
         
         slogan();
         
+        // Makes new Greek Chapter :)
         function reRoll() {
             $("h2").remove();
             $("h3").remove();
             $(".description-text").text("");
+            
             goGreek();
             slogan();
+            
             $(".container").css("background-color", randomColorGenerator());
         }
         
@@ -85,7 +88,17 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
         // Listeners
         
         // Make to new function to be called by close-info button too
-        $("#reRoll").click(reRoll);
+        $("#reRoll").click(function() {
+            reRoll();
+        });
+        
+        $("#share").click(function() {
+            // TODO add in custom content to Tweet
+            // Temporary
+            var shareLink = "https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ffrat-srat-gen-rhyneav.c9users.io%2Findex.html&ref_src=twsrc%5Etfw&tw_p=tweetbutton&url=https%3A%2F%2Ffrat-srat-gen-rhyneav.c9users.io%2Findex.html";
+            window.open(shareLink, "newwindow", "width=533, height=388"); 
+
+        });
         
         // Close out overlay
         $("#close-info").click(function() {
