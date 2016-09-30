@@ -21,6 +21,14 @@ function getStarted() {
     $("#close-info").text("Start");
 }
 
+function formatTweet(info) {
+    var formattedTweet = encodeURIComponent(info);
+    var shareLink = "https://twitter.com/intent/tweet?text=" + formattedTweet;
+    window.open(shareLink, "newwindow", "width=533, height=388"); 
+    
+    return formattedTweet;   
+}
+
 $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5C1QF_57hrVGYpdmf9c/od6/public/basic?alt=json", function(data) {
     function goGreek() {
         for (var i = 0; i < 3; i++) {
@@ -31,7 +39,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
 
             $(".letters").append("<h2 class='animated hidden letter" + i + "'>" + letter + "</h2>");
             if (i != 2) {
-                $(".description-text").append("<span class='text'>" + letterName + ", ");
+                $(".description-text").append("<span class='text'>" + letterName + " ");
             } else {
                 $(".description-text").append(letterName);
             }
@@ -93,11 +101,13 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
         });
         
         $("#share").click(function() {
-            // TODO add in custom content to Tweet
-            // Temporary
-            var shareLink = "https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ffrat-srat-gen-rhyneav.c9users.io%2Findex.html&ref_src=twsrc%5Etfw&tw_p=tweetbutton&url=https%3A%2F%2Ffrat-srat-gen-rhyneav.c9users.io%2Findex.html";
-            window.open(shareLink, "newwindow", "width=533, height=388"); 
+            var url = window.location.href;
+            var newCharter = $(".description-text").text();
+            var newSlogan = $(".slogan h3").text();
+            
+            var tweetString = "I just chartered " + newCharter + ": " + newSlogan + " Try for yourself at " + url;
 
+            formatTweet(tweetString);
         });
         
         // Close out overlay
