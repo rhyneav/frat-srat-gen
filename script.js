@@ -115,6 +115,9 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1RsBx38ctnaIZFcTBi6jpcNtB5
             $(".overlay").css("height", "0%"); 
             reRoll();
         });
+        
+        // Bring up info
+        
     });
 
 });
